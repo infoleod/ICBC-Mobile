@@ -51,17 +51,20 @@
 
             #eds-webchat-container #webchat-container {
                 position: fixed !important;
+                top: auto !important;
+                bottom: 0 !important;
+                height: var(--100vvh) !important;
             }
         }
     </style>
 </head>
 
-<body>
+<body body-scroll-lock-ignore>
     <noscript>Habilite JavaScript para poder usar esta página web.</noscript>
     <div id="overlay"></div>
     <div><img class="bg-image" src="images/background.jpg"></div>
 
-    <div id="eds-webchat-container" body-scroll-lock-ignore> <b id="eds-bot-button-message">¿Necesitás ayuda?</b> </div>
+    <div id="eds-webchat-container" style="height: var(--100vvh); position: fixed; z-index: 2;" body-scroll-lock-ignore> <b id="eds-bot-button-message">¿Necesitás ayuda?</b> </div>
 
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae deserunt impedit blanditiis sint perferendis quae
         reprehenderit ducimus, aliquid delectus, mollitia soluta, et repellendus tempore veritatis pariatur enim officia
