@@ -3,20 +3,31 @@
 
 // leo.addEventListener("click", scrollToTop);
 // Crea una instancia de un observador.
-var observer = new MutationObserver(function(mutations) {
+var observer = new MutationObserver(function (mutations) {
   // Itera sobre todas las mutaciones que acaban de suceder.
-  mutations.forEach(function(mutation) {
+  mutations.forEach(function (mutation) {
     // Si la clase "hidden" no está presente, desactiva el scroll del body.
     const targetElement = document.querySelector('body');
+    let setIntervalId = setInterval(() => {
+      if (!mutation.target.classList.contains('hidden')) {
+        scrollToTop();
+      } else {
+        clearInterval(setIntervalId);
+      }
 
+    }, 100);
     if (!mutation.target.classList.contains('hidden')) {
       bodyScrollLock.disableBodyScroll(targetElement, {
         allowTouchMove: el => {
           while (el && el !== document.body) {
-            if (el.getAttribute('body-scroll-lock-ignore') !== null) {
+            if (
+              el.getAttribute('body-scroll-lock-ignore') !== null
+              //  && el.getAttribute('id') !== 'eds-webchat-container' 
+               && !(el.getAttribute('class')?.indexOf('webchat__send-box') > -1) 
+            ) {
               return true;
             }
-      
+
             el = el.parentElement;
           }
         },
@@ -24,8 +35,14 @@ var observer = new MutationObserver(function(mutations) {
     } else {
       bodyScrollLock.enableBodyScroll(targetElement);
     }
-  });    
+  });
 });
+
+scrollToTop = () => {
+  if (window.scrollY !== 0) {
+    window.scrollTo(0, 0);
+  }
+}
 
 // Empieza a observar el div del chatbot
 setTimeout(() => {
@@ -33,24 +50,14 @@ setTimeout(() => {
   observer.observe(chatbotDiv, { attributes: true, attributeFilter: ['class'] });
 }, 1000)
 
-
-function scrollToTop() {
-// Scroll to top logic
-pepe.scrollTo({
-    top: 0,
-    behavior: "smooth"
-});
-}; 
-
-
 class VVP {
   constructor() {
     this.enabled = typeof (window.visualViewport) === "object";
     if (!this.enabled) {
       console.error("Visual Viewport is not available in this browser.");
     }
-    this.vvp = {w: 0, h: 0};
-    this.vp = {w: 0, h: 0};
+    this.vvp = { w: 0, h: 0 };
+    this.vp = { w: 0, h: 0 };
     this.create_style_element();
     this.refresh();
 
@@ -98,4 +105,3 @@ class VVP {
   }
 }
 
-     
