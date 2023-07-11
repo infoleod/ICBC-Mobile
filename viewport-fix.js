@@ -105,3 +105,4 @@ class VVP {
   }
 }
 
+new VVP();
