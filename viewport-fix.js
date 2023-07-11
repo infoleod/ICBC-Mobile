@@ -1,7 +1,3 @@
-// let leo = document.getElementById("webchat-button");
-// let pepe = document.documentElement;        
-
-// leo.addEventListener("click", scrollToTop);
 // Crea una instancia de un observador.
 var observer = new MutationObserver(function (mutations) {
   // Itera sobre todas las mutaciones que acaban de suceder.
@@ -45,10 +41,14 @@ scrollToTop = () => {
 }
 
 // Empieza a observar el div del chatbot
-setTimeout(() => {
+let intervalIdBotContainer = setInterval(() => {
+
   var chatbotDiv = document.querySelector('#webchat-container');
-  observer.observe(chatbotDiv, { attributes: true, attributeFilter: ['class'] });
-}, 1000)
+  if(chatbotDiv){
+    clearInterval(intervalIdBotContainer);
+    observer.observe(chatbotDiv, { attributes: true, attributeFilter: ['class'] });
+  }
+}, 100)
 
 class VVP {
   constructor() {

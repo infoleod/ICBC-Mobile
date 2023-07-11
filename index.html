@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <link rel="icon" type="image/png" href="favicon.png" />
@@ -29,51 +28,7 @@
         credentials-subscription-key="" credentials-region="" direct-line-secret=""
         allow-conversation-reconnect="true"></script>
     <script src="body-scroll-lock.js"></script>
-    <!-- MODIFICADO MOBILE -->
-    <!-- <link rel="stylesheet" type="text/css" href="modif_mobile.css"/> -->
-    <style>
-        .webchat__basic-transcript__activity-indicator--focus, .webchat__basic-transcript__focus-indicator {
-            border: none !important;
-        }
-
-        @media screen and (max-width: 767px) {
-            #webchat-header-section {
-                position: fixed !important;
-                z-index: 2;
-            }
-
-            #webchat-box {
-                min-height: calc(var(--100vvh) - 56px) !important;
-                /* height: calc(var(--100vvh) / 2) !important; */
-                bottom: 0;
-                position: absolute;
-                right: 0;
-                left: 0;
-                top: 56px;
-            }
-
-            #eds-webchat-container #webchat-container {
-                position: fixed !important;
-                /* top: auto !important; */
-                bottom: 0 !important;
-                height: var(--100vvh) !important;
-            }
-
-            .webchat__send-box{
-                position: absolute;
-                width: 100%;
-                bottom: 0
-            }
-
-            .webchat__basic-transcript {
-                position: absolute !important;
-                left: 0;
-                right: 0;
-                bottom: 56px;
-                top: 0px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="modif_mobile.css"/>
 </head>
 
 <body body-scroll-lock-ignore>
@@ -81,7 +36,7 @@
     <div id="overlay"></div>
     <div><img class="bg-image" src="images/background.jpg"></div>
 
-    <div id="eds-webchat-container" style="height: var(--100vvh); position: fixed; z-index: 2;" body-scroll-lock-ignore> <b id="eds-bot-button-message">¿Necesitás ayuda?</b> </div>
+    <div id="eds-webchat-container" body-scroll-lock-ignore> <b id="eds-bot-button-message">¿Necesitás ayuda?</b> </div>
 
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae deserunt impedit blanditiis sint perferendis quae
         reprehenderit ducimus, aliquid delectus, mollitia soluta, et repellendus tempore veritatis pariatur enim officia
