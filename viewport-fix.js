@@ -42,7 +42,6 @@ scrollToTop = () => {
 
 // Empieza a observar el div del chatbot
 let intervalIdBotContainer = setInterval(() => {
-
   var chatbotDiv = document.querySelector('#webchat-container');
   if(chatbotDiv){
     clearInterval(intervalIdBotContainer);
