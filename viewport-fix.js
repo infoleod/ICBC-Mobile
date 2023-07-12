@@ -6,44 +6,77 @@ var observer = new MutationObserver(function (mutations) {
     const targetElement = document.querySelector('body');
     let setIntervalId = setInterval(() => {
       if (!mutation.target.classList.contains('hidden')) {
-        scrollToTop();
+        addListeners();
+        window.scrollTo(0, 0);
       } else {
+        removeListeners();
         clearInterval(setIntervalId);
       }
 
     }, 100);
-    if (!mutation.target.classList.contains('hidden')) {
-      bodyScrollLock.disableBodyScroll(targetElement, {
-        allowTouchMove: el => {
-          while (el && el !== document.body) {
-            if (
-              el.getAttribute('body-scroll-lock-ignore') !== null
-              //  && el.getAttribute('id') !== 'eds-webchat-container' 
-               && !(el.getAttribute('class')?.indexOf('webchat__send-box') > -1) 
-            ) {
-              return true;
-            }
+    // if (!mutation.target.classList.contains('hidden')) {
+    //   bodyScrollLock.disableBodyScroll(targetElement, {
+    //     allowTouchMove: el => {
+    //       while (el) {
+    //         if (
+    //           el.getAttribute('body-scroll-lock-ignore') !== null
+    //           //  && el.getAttribute('id') !== 'eds-webchat-container' 
+    //           || !(el.getAttribute('class')?.indexOf('webchat__send-box') > -1)
+    //         ) {
+    //           return true;
+    //         }
 
-            el = el.parentElement;
-          }
-        },
-      });
-    } else {
-      bodyScrollLock.enableBodyScroll(targetElement);
-    }
+    //         el = el.parentElement;
+    //       }
+    //     },
+    //   });
+    // } else {
+    //   bodyScrollLock.enableBodyScroll(targetElement);
+    // }
   });
 });
 
-scrollToTop = () => {
-  if (window.scrollY !== 0) {
-    window.scrollTo(0, 0);
+
+// Select elements with the class 'webchat__basic-transcript__scrollable'
+let startY = 0;
+// Function to handle the 'touchmove' event
+const handleTouchMoveEvent = function (event) {
+  const scrollableElements = document.querySelectorAll('.webchat__basic-transcript__scrollable');
+  // Check if the target element of the event has the class 'webchat__basic-transcript__scrollable'
+  const isScrollableElement = Array.from(scrollableElements).some(element => element.contains(event.target));
+  if (!isScrollableElement || (isScrollableElement && scrollableElements[0].scrollTop === 0)) {
+    const deltaY = event.touches[0].clientY - startY;
+    if (deltaY < 0 && event.cancelable) {
+      event.preventDefault();
+    }
+    startY = event.touches[0].clientY;
   }
-}
+};
+
+// Function to handle the 'touchstart' event
+const handleTouchStartEvent = function (event) {
+  // Save the initial scroll position
+  startY = event.touches[0].clientY;
+};
+
+// Add event listeners
+const addListeners = function () {
+  document.addEventListener('touchmove', handleTouchMoveEvent, { passive: false });
+  document.addEventListener('touchstart', handleTouchStartEvent, { passive: false });
+};
+
+// Remove event listeners
+const removeListeners = function () {
+  document.removeEventListener('touchmove', handleTouchMoveEvent);
+  document.removeEventListener('touchstart', handleTouchStartEvent);
+};
+
+
 
 // Empieza a observar el div del chatbot
 let intervalIdBotContainer = setInterval(() => {
   var chatbotDiv = document.querySelector('#webchat-container');
-  if(chatbotDiv){
+  if (chatbotDiv) {
     clearInterval(intervalIdBotContainer);
     observer.observe(chatbotDiv, { attributes: true, attributeFilter: ['class'] });
   }

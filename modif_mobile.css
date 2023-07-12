@@ -18,13 +18,13 @@
     }
 
     #eds-webchat-container {
-        height: var(--100vvh); 
-        position: fixed; z-index: 2;
+        /* height: var(--100vvh); 
+        position: fixed; 
+        z-index: 2; */
     }
 
     #eds-webchat-container #webchat-container {
         position: fixed !important;
-        bottom: 0 !important;
         height: var(--100vvh) !important;
     }
 
