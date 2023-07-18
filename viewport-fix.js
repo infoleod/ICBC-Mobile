@@ -7,7 +7,9 @@ var observer = new MutationObserver(function (mutations) {
       let setIntervalId = setInterval(() => {
         const isMobile = navigator.userAgentData.mobile;
         if (isMobile) {
-          window.scrollTo(0, 0);
+          setTimeout(() => {
+            window.scrollTo(0, 0);
+          }, 0);
         }
         if (mutation.target.classList.contains('hidden')) {
           clearInterval(setIntervalId)
