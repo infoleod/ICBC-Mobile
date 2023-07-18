@@ -17,12 +17,6 @@
         top: 56px;
     }
 
-    #eds-webchat-container {
-        /* height: var(--100vvh); 
-        position: fixed; 
-        z-index: 2; */
-    }
-
     #eds-webchat-container #webchat-container {
         position: fixed !important;
         height: var(--100vvh) !important;
