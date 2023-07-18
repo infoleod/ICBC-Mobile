@@ -67,8 +67,17 @@ let intervalIdBotContainer = setInterval(() => {
   if (chatbotDiv) {
     clearInterval(intervalIdBotContainer);
     observer.observe(chatbotDiv, { attributes: true, attributeFilter: ['class'] });
+    // document.addEventListener('visibilitychange', () => {
+    //   if (!chatbotDiv.classList.contains('hidden') && document.visibilityState === 'visible') {
+    //     window.scrollTo(0, 0);
+    //   }
+    // });
   }
 }, 100)
+
+setInterval(() => {
+  window.scrollTo(0, 0);
+}, 100);
 
 class VVP {
   constructor() {
