@@ -8,7 +8,7 @@ var observer = new MutationObserver(function (mutations) {
         const isMobile = navigator.userAgentData.mobile;
         if (isMobile) {
           setTimeout(() => {
-            window.scrollTo(0, 0);
+            window.scrollTo(0, 1);
           }, 0);
         }
         if (mutation.target.classList.contains('hidden')) {
@@ -67,17 +67,9 @@ let intervalIdBotContainer = setInterval(() => {
   if (chatbotDiv) {
     clearInterval(intervalIdBotContainer);
     observer.observe(chatbotDiv, { attributes: true, attributeFilter: ['class'] });
-    // document.addEventListener('visibilitychange', () => {
-    //   if (!chatbotDiv.classList.contains('hidden') && document.visibilityState === 'visible') {
-    //     window.scrollTo(0, 0);
-    //   }
-    // });
   }
 }, 100)
 
-setInterval(() => {
-  window.scrollTo(0, 0);
-}, 100);
 
 class VVP {
   constructor() {
