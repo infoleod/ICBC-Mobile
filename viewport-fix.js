@@ -39,14 +39,12 @@ const handleTouchStartEvent = function (event) {
 };
 
 const handleTouchEndEvent = function (event) {
-  if (!event.cancelable) {
+  setTimeout(() => {
+    window.scrollTo(0, 1);
     setTimeout(() => {
-      window.scrollTo(0, 10);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-      }, 10);
-    }, 10); //Workaround para hacerlo andar en chrome mobile
-  }
+      window.scrollTo(0, 0);
+    }, 10);
+  }, 10); 
 }
 
 // Add event listeners
