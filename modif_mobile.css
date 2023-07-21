@@ -1,48 +1,38 @@
-/* Variables del Body */
-#viewport, body {
-    height: var(--100vvh, 100vh);
-    width: var(--100vvw, 100vw);
-    overflow: auto;
-    position: relative;
+.webchat__basic-transcript__activity-indicator--focus, .webchat__basic-transcript__focus-indicator {
+    border: none !important;
 }
 
-
-/* Header */
-#webchat-header-section {
-    position: fixed;
-    top: 0px!important;
-    width: var(--100vvw, 0)!important;
-    left: 0;    
-    z-index: 1;
-
-}
-
-/* Footer */
-.webchat__send-box__main {
-    position: fixed;
-    width: var(--100vvw, 0)!important;
-    bottom: var(--offset-h, 0)!important;
-    left: 0;
-}
-
-/* Otros */
-#webchat-box {
-    height: calc(--offset-h- 56px)!important;
-}
-
-
-/* Media */
-@media screen and (min-width: 768px) {
-    .body {
-        overflow: hidden!important;
-    }
-}
-
-/* Resolucion Mobile */
 @media screen and (max-width: 767px) {
-    .body {
-        overflow: auto!important;
+    #webchat-header-section {
+        position: fixed !important;
+        z-index: 2;
     }
-    #webchat-container {
-        top: 56px!important;
+
+    #webchat-box {
+        min-height: calc(var(--100vvh) - 56px) !important;
+        bottom: 0;
+        position: absolute;
+        right: 0;
+        left: 0;
+        top: 56px;
+    }
+
+    #eds-webchat-container #webchat-container {
+        position: fixed !important;
+        height: var(--100vvh) !important;
+    }
+
+    .webchat__send-box{
+        position: absolute;
+        width: 100%;
+        bottom: 0
+    }
+
+    .webchat__basic-transcript {
+        position: absolute !important;
+        left: 0;
+        right: 0;
+        bottom: 56px;
+        top: 0px;
+    }
 }
